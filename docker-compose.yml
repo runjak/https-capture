@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  proxy:
+    image: nginx:alpine
+    container_name: ssl-capture-proxy
+    ports:
+      - 27374:80
+    volumes:
+      - "./proxy/:/etc/nginx/conf.d/:ro"
+
+  reverse:
+    image: nginx:alpine
+    container_name: ssl-capture-reverse
+    ports:
+      - 443:443
+    volumes:
+      - "./reverse/:/etc/nginx/conf.d/:ro"
